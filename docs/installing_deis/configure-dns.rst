@@ -28,10 +28,23 @@ This record is necessary for all deployments of Deis (EC2, Rackspace, bare metal
 
 Using xip.io
 ------------
-An alternative to configuring your own DNS records is to use `xip`_. For example, for EC2:
+An alternative to configuring your own DNS records is to use `xip`_. 
+
+Bear in mind that this only works for IP addresses and not for hostnames so if you're using EC2 behind an ELB, which aren't assigned static IPs, xip won't work for you.
+
+For example, say you gave Deis set up on the IP 100.20.30.40, you could use xip like so:
 
 .. code-block:: console
 
-    $ deis register http://deis.deis-DeisWebELB-8N30OETT0HOK-2005743466.us-west-2.elb.amazonaws.com.xip.io
+    $ deis register http://deis.100.20.30.40.xip.io
 
 .. _`xip`: http://xip.io/
+
+DNS and EC2
+-----------
+If you're using EC2 and you're behind an ELB, one method of configuring the DNS is to setup two CNAME records: one for deis.yourdomain.com, and one for *.deis.yourdomain.com.
+
+    deis.yourdomain.com. IN CNAME deis.deis-DeisWebELB-8N30OETT0HOK-2005743466.us-west-2.elb.amazonaws.com.
+    *.deis.yourdomain.com. IN CNAME deis.deis-DeisWebELB-8N30OETT0HOK-2005743466.us-west-2.elb.amazonaws.com.
+    
+You can't reliably setup A records for an ELB because Amazon cannot guarantee that the IP address won't change.
