@@ -11,20 +11,20 @@ CONTRIB_DIR=$(dirname $THIS_DIR)
 source $CONTRIB_DIR/utils.sh
 
 if [ -z "$1" ]; then
-  echo_red 'Usage: provision-rackspace-cluster.sh <key pair name> [environment] [flavor]'
+  echo_red 'Usage: provision-rackspace-cluster.sh <key pair name> [flavor] [environment]'
   exit 1
 fi
 
 if [ -z "$2" ]; then
-  ENV="production"
+  FLAVOR="performance1-2"
 else
-  ENV=$2
+  FLAVOR=$2
 fi
 
 if [ -z "$3" ]; then
-  FLAVOR="performance1-2"
+  ENV="production"
 else
-  FLAVOR=$3
+  ENV=$3
 fi
 
 if ! which supernova > /dev/null; then
