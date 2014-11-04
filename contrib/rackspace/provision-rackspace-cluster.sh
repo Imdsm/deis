@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# Usage: ./provision-rackspace-cluster.sh <key pair name> [environment] [flavor]
+# Usage: ./provision-rackspace-cluster.sh <key pair name> [flavor] [environment]
 #
 
 set -e
