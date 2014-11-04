@@ -53,7 +53,7 @@ Deis clusters of less than 3 nodes are unsupported.
 
 ### Run the provision script
 Run the [Rackspace provision script](provision-rackspace-cluster.sh) to spawn a new CoreOS cluster.
-You'll need to provide the name of the key pair you just added. Optionally, you can also specify a flavor name.
+You'll need to provide the name of the key pair you just added. Optionally, you can also specify the supernova environment to use, as well as a flavor name. The environment will default to `production`, and the flavor to `performance1-2`.
 ```console
 $ cd contrib/rackspace
 $ ./provision-rackspace-cluster.sh
